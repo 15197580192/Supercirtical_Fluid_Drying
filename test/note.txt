@@ -1,0 +1,26 @@
+输入文件：
+PARAMETER.dat
+输出文件：
+log.dat
+Profile'//CN//'.dat
+press'//CN//'.dat
+PARA_List.dat
+Cv'//CN//'.dat
+
+文件输入输出调用过程：
+Call Parameter_ImPut(2)
+open(21,FILE='log.dat')
+close(21)
+Call OutPut(2)
+
+循环
+	Call OutPut(3)
+	Call OutPut(0)
+	Call OutPut(3)
+	Call OutPut(1)
+
+output对应文件
+output(0)	Profile'//CN//'     press'//CN//'
+output(2)	PARA_List.dat
+output(1)	log.dat
+output(3)	Cv'//CN//'
