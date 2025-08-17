@@ -390,7 +390,6 @@ XH(J) = -QH(I,J) - 0.50d0 * Dt * De * (	(QH(I+1,J)-2.0d0*QH(I,J)+QH(I-1,J))/Dr/D
 		
 		open(21,file='output\Profile'//CN//'.dat')
 
-WRITE (21,99) "i径向位置，j凝胶高度，凝胶柱内浓度"
 		Do I = 0, RN
 			Do J = 1, HN
 	
@@ -402,7 +401,7 @@ WRITE (21,99) "i径向位置，j凝胶高度，凝胶柱内浓度"
 		Close(21)
 		
 		open(21,file='output\press'//CN//'.dat')
-WRITE (21,99) "i径向位置，j凝胶高度，凝胶柱内浓度径向梯度，凝胶柱内浓度高度梯度"
+
 		Do I = 1, RN
 			Do J = 2, HN
 	
@@ -452,7 +451,7 @@ WRITE (21,99) "i径向位置，j凝胶高度，凝胶柱内浓度径向梯度，凝胶柱内浓度高度梯度"
 	if (IO == 3) then
 		
 		open(21,file='output\Cv'//CN//'.dat')
-        WRITE (21,99) "J凝胶柱高度，凝胶柱外表面浓度"
+
 		I = RN1
 		Do J = 1, HN
 	
