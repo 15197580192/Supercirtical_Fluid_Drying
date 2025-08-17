@@ -6,4 +6,7 @@
 可视化程序
 -gui.exe可视化程序
 -SFDrun.exe计算程序
+
+重新编译打包
     gfortran -static .\Supercirtical_Fluid_Drying_20150819.f90 -o SFDrun.exe
+    pyinstaller .\gui.spec

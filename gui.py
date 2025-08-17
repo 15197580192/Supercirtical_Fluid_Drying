@@ -6,6 +6,10 @@ import threading
 import numpy as np
 import matplotlib.pyplot as plt
 
+# 设置中文字体支持
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
 parameters = {
     "File_Name": "Ethanol",
     "ra": 1.5000000E-02,
@@ -216,7 +220,7 @@ def plot_concentration():
 
     try:
         # 读取数据
-        data = np.loadtxt(filename)
+        data = np.loadtxt(filename, skiprows=1)
 
         # 提取 R, Z, 浓度
         R = data[:, 0]
@@ -245,11 +249,11 @@ def plot_concentration():
 
         # 添加颜色条
         cbar = plt.colorbar(contour)
-        cbar.set_label('Concentration')
+        cbar.set_label('凝胶柱内浓度')
 
         # 标注轴和时间
-        plt.xlabel("R")
-        plt.ylabel("Z")
+        plt.xlabel("径向位置")
+        plt.ylabel("凝胶高度")
         plt.title(f"CN = {Profile}")
 
         # 显示图像
@@ -270,7 +274,7 @@ def plot_pressure_density():
 
     try:
         # 读取数据
-        data = np.loadtxt(filename)
+        data = np.loadtxt(filename, skiprows=1)
 
         # 提取 R, Z, 压力差, 密度差
         R = data[:, 0]
@@ -300,17 +304,17 @@ def plot_pressure_density():
         # 绘制浓度差分布图
         contour1 = axes[0].contourf(R_grid, Z_grid, pressure_grid, levels=pressure_levels, cmap=cmap)
         cbar1 = fig.colorbar(contour1, ax=axes[0])
-        cbar1.set_label('Concentration Difference')
-        axes[0].set_xlabel("R")
-        axes[0].set_ylabel("Z")
+        cbar1.set_label('凝胶柱内浓度径向梯度')
+        axes[0].set_xlabel("径向位置")
+        axes[0].set_ylabel("凝胶高度")
         axes[0].set_title(f"Concentration Difference (CN = {Profile})")
 
         # 绘制密度差分布图
         contour2 = axes[1].contourf(R_grid, Z_grid, density_grid, levels=density_levels, cmap=cmap)
         cbar2 = fig.colorbar(contour2, ax=axes[1])
-        cbar2.set_label('Density Difference')
-        axes[1].set_xlabel("R")
-        axes[1].set_ylabel("Z")
+        cbar2.set_label('凝胶柱内浓度高度梯度')
+        axes[1].set_xlabel("径向位置")
+        axes[1].set_ylabel("凝胶高度")
         axes[1].set_title(f"Density Difference (CN = {Profile})")
 
         # 显示图像
@@ -333,7 +337,7 @@ def plot_cv():
 
     try:
         # 读取数据 (假设每行格式为 Z 浓度)
-        data = np.loadtxt(filename)
+        data = np.loadtxt(filename, skiprows=1)
 
         # 提取 Z 和 浓度
         Z = data[:, 0]
@@ -344,8 +348,8 @@ def plot_cv():
         plt.plot(Z, concentration, marker='o', linestyle='-', color='b', label='Concentration')
 
         # 添加轴标签和标题
-        plt.xlabel("Z")
-        plt.ylabel("Concentration")
+        plt.xlabel("凝胶柱高度")
+        plt.ylabel("凝胶柱外表面浓度")
         plt.title(f"CN = {Profile}")
         plt.grid(True)
         plt.legend()
